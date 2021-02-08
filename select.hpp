@@ -38,4 +38,8 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+class Select_And: public Select{
+
+}
+
 #endif //__SELECT_HPP__
