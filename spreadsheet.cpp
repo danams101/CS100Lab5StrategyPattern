@@ -40,3 +40,12 @@ int Spreadsheet::get_column_by_name(const std::string& name) const
             return i;
     return -1;
 }
+
+// Implement print_selection.
+void print_selection(std::ostream& out) const {
+	if(select == nullptr)
+	{
+	//print whole spreadsheet
+	}
+
+}
