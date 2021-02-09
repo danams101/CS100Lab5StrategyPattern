@@ -23,6 +23,13 @@ void Spreadsheet::clear()
     select = nullptr;
 }
 
+void Spreadsheet::print_selection(std::ostream& out) const
+{
+	if(select == true){
+		out << cell_data(row,get_column_by_name(row));
+	}
+}
+
 void Spreadsheet::set_column_names(const std::vector<std::string>& names)
 {
     column_names=names;
