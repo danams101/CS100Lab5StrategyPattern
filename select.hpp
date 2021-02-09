@@ -39,7 +39,13 @@ public:
 };
 
 class Select_And: public Select{
+public:
+	bool select(const Spreadsheet* sheet, int row) const = 0;
+}
 
+class Select_Or: public Select{
+public: 
+	bool select(const Spreadsheet* sheet, int row) const = 0;
 }
 
 #endif //__SELECT_HPP__
