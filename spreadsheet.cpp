@@ -25,8 +25,8 @@ void Spreadsheet::clear()
 
 void Spreadsheet::print_selection(std::ostream& out) const
 {
-	if(select == true){
-		out << cell_data(row,get_column_by_name(row));
+	if(select(sheet,row) == true){
+		out <<select(sheet->cell_data(row, column));
 	}
 }
 
