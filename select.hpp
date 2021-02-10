@@ -48,7 +48,7 @@ public:
 		one = check_one;
 		two = check_two;
 }
-	bool select(const Spreadsheet* sheet, int row) const = 0{
+	bool select(const Spreadsheet* sheet, int row) const{
 		if(one->select(sheet,row) == true and two->select(sheet,row) == true){
 			return true;
 		}else{
@@ -73,7 +73,7 @@ public:
                 one = check_one;
                 two = check_two;
 }
-        bool select(const Spreadsheet* sheet, int row) const = 0{
+        bool select(const Spreadsheet* sheet, int row) const{
                 if(one->select(sheet,row) == true or two->select(sheet,row) == true){
                         return true;
                 }else{
