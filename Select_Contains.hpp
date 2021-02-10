@@ -2,16 +2,25 @@
 #define __SELECT_CONTAINS__
 
 #include "select.hpp"
-#include "spreadsheet.h"
+#include "spreadsheet.hpp"
 
 class Select_Contains : public Select_Column {
 public:
-	Select_Contains( const Spreadsheet* sheet, const std::string& columnName, const std::string& ss);
+	Select_Contains( const Spreadsheet* sheet, const std::string& columnName, const std::string& ss) {
+		Select_Column(sheet, columnName);
+		substring = ss;
+	}
 	
-	virtual bool select(const std::string& s) const;
+	virtual bool select(const std::string& s) const {
+		if(s.find(substring) != std::string::npos)
+        	{
+                	return true;
+        	}
+        	return false;
+	}
 
-private:
-	int column;
+protected:
+	//int column;
 	std::string substring;
 
 };

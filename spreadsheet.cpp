@@ -42,10 +42,28 @@ int Spreadsheet::get_column_by_name(const std::string& name) const
 }
 
 // Implement print_selection.
-void print_selection(std::ostream& out) const {
+void Spreadsheet::print_selection(std::ostream& out) const {
 	if(select == nullptr)
 	{
-	//print whole spreadsheet
+		//print whole spreadsheet
+		for(int i = 0; i < this->data.size(); ++i) {
+                        for(int j = 0; j < data.at(i).size(); ++j) {
+                        	out << data.at(i).at(j) << ' ';
+                        }
+			out << std::endl; 
+                }
+
+	}
+	else {
+		//iterate through spreadsheet
+		//use select->select(this,i) to determine if row should be printed
+		for(int i = 0; i < this->data.size(); ++i) {
+			for(int j = 0; j < data.at(i).size(); ++j) {
+				if (select->select(this, i)) {
+					out << data.at(i).at(j) << ' ';
+				}
+			}			
+		}		
 	}
 
 }
