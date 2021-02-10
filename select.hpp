@@ -60,7 +60,7 @@ public:
 		delete one;
 		delete two;
 	}
-}
+};
 
 
 class Select_Or: public Select{
@@ -85,6 +85,6 @@ public:
                 delete one;
                 delete two;
         }
-}
+};
 
 #endif //__SELECT_HPP__
