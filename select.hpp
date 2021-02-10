@@ -38,4 +38,23 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+
+class Select_Contains : public Select_Column {
+public:
+        Select_Contains( const Spreadsheet* sheet, const std::string& columnName, const std::string& ss) : Select_Column(sheet, columnName) {
+                substring = ss;
+        }
+
+        virtual bool select(const std::string& s) const {
+                if(s.find(substring) != std::string::npos)
+                {
+                        return true;
+                }
+                return false;
+        }
+
+protected:
+        std::string substring;
+};
+
 #endif //__SELECT_HPP__
