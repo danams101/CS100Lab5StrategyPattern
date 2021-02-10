@@ -25,8 +25,22 @@ void Spreadsheet::clear()
 
 void Spreadsheet::print_selection(std::ostream& out) const
 {
-	if(select(sheet,row) == true){
-		out <<select(sheet->cell_data(row, column));
+	if(select == nullptr)
+	{
+	for(int i = 0; i < this->data.size(); ++i) {
+                        for(int j = 0; j < data.at(i).size(); ++j) {
+                        	out << data.at(i).at(j) << ' ';
+                        }
+			out << std::endl; 
+                }
+		} else {
+		for(int i = 0; i < this->data.size(); ++i) {
+			for(int j = 0; j < data.at(i).size(); ++j) {
+				if (select->select(this, i)) {
+					out << data.at(i).at(j) << ' ';
+				}
+			}			
+		}	
 	}
 }
 
