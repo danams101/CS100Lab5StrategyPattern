@@ -39,13 +39,52 @@ public:
 };
 
 class Select_And: public Select{
+protected:
+	Select* one;
+	Select* two;
+
 public:
-	bool select(const Spreadsheet* sheet, int row) const = 0;
+	Select_And(Select* check_one, Select* check_two){
+		one = check_one;
+		two = check_two;
+}
+	bool select(const Spreadsheet* sheet, int row) const = 0{
+		if(one->select(sheet,row) == true and two->select(sheet,row) == true){
+			return true;
+		}else{
+			return false;
+	}
+	}
+
+	virtual ~Select_And(){
+		delete one;
+		delete two;
+	}
 }
 
+
 class Select_Or: public Select{
-public: 
-	bool select(const Spreadsheet* sheet, int row) const = 0;
+protected:
+        Select* one;
+        Select* two;
+
+public:
+        Select_Or(Select* check_one, Select* check_two){
+                one = check_one;
+                two = check_two;
+}
+        bool select(const Spreadsheet* sheet, int row) const = 0{
+                if(one->select(sheet,row) == true or two->select(sheet,row) == true){
+                        return true;
+                }else{
+                        return false;
+        }
+        }
+
+        virtual ~Select_Or(){
+                delete one;
+                delete two;
+        }
 }
 
 #endif //__SELECT_HPP__
