@@ -38,4 +38,72 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+
+class Select_Contains : public Select_Column {
+public:
+        Select_Contains( const Spreadsheet* sheet, const std::string& columnName, const std::string& ss) : Select_Column(sheet, columnName) {
+                substring = ss;
+        }
+
+        virtual bool select(const std::string& s) const {
+                if(s.find(substring) != std::string::npos)
+                {
+                        return true;
+                }
+                return false;
+        }
+
+protected:
+        std::string substring;
+};
+
+class Select_Not: public Select {
+public:
+	Select_Not(Select* selCont) {
+		contains = selCont;
+	}
+	
+	virtual bool select(const Spreadsheet* sheet, int row) const {
+		if(contains->select(sheet,row) == true) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	virtual ~Select_Not() {
+		delete contains;
+	}
+		
+
+protected:
+	Select* contains;
+};
+
+/*//Fengchun's function to test Select_Not
+class Select_And: public Select{
+protected:
+	Select* one;
+	Select* two;
+
+public:
+	Select_And(Select* check_one, Select* check_two){
+		one = check_one;
+		two = check_two;
+}
+	bool select(const Spreadsheet* sheet, int row) const{
+		if(one->select(sheet,row) == true and two->select(sheet,row) == true){
+			return true;
+		}else{
+			return false;
+	}
+	}
+
+	virtual ~Select_And(){
+		delete one;
+		delete two;
+	}
+};*/
+
 #endif //__SELECT_HPP__
